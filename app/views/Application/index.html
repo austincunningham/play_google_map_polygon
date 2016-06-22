@@ -1,11 +1,15 @@
 #{extends 'main.html' /}
-#{set title:'Home' /}
-<style>
-  #googleMap {
-    width: 500px;
-    height:400px;
-  }
-</style>
-<div id="googleMap"></div>
-<script src="https://maps.googleapis.com/maps/api/js"></script>
+#{set title:'Polygon overlay' /}
+
+<section class="ui segment">
+  <h4>Marker locations</h4>
+  <button type="button" onclick="start()">Start</button>
+  <button type="button" onclick="stop()">Stop</button>
+  <button type="button" onclick="filter()">Filter</button>
+  <button type="button" onclick="reset()">Reset</button>
+  </section>
+<section class="ui segment">
+  <div id="googleMap" style="width:90%;height:400px;"></div>
+</section>
+<script src="http://maps.googleapis.com/maps/api/js"></script>
 <script src="@{'public/javascripts/polygon.js'}"></script>
