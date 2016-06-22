@@ -1,4 +1,11 @@
 #{extends 'main.html' /}
 #{set title:'Home' /}
-
-#{welcome /}
+<style>
+  #googleMap {
+    width: 500px;
+    height:400px;
+  }
+</style>
+<div id="googleMap"></div>
+<script src="https://maps.googleapis.com/maps/api/js"></script>
+<script src="@{'public/javascripts/polygon.js'}"></script>

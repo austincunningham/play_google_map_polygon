@@ -11,7 +11,9 @@
     <body>
         #{doLayout /}
         
-        <script src="@{'/public/javascripts/jquery-1.6.4.min.js'}" type="text/javascript" charset="${_response_encoding}"></script>
+<!--         <script src="http://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript" charset="${_response_encoding}></script>  -->
+		<script src="@{'/public/javascripts/jquery.min.js'}" type="text/javascript" charset="${_response_encoding}"></script>
         #{get 'moreScripts' /}
+        
     </body>
 </html>
