@@ -88,7 +88,8 @@ function setInfoWindowListener(latlngStr)
       const marker = markers[i];
       google.maps.event.addListener(marker, 'click', (function (marker, i) {
           return function () {
-            infowindow.setContent(latlngStr[i][0]);
+            infowindow.setContent(latlngStr[i][0] + '<div> Latitude ' + latlngStr[i][1] + '</div><div> Longitude ' + latlngStr[i][2] + '</div>');
+            //infowindow.setContent();
             infowindow.open(map, marker);
           }
       })(marker, i));
