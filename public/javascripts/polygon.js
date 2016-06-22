@@ -53,13 +53,13 @@ function retrieveMarkerLocations()
  * the format is 'firstName, xx.xxxx, yy.yyyyy' -> (firstName, lat, lng)
  * then invoke 'fitBounds' to render the markers, centre map and create infoWindow to display firstName
  */
-function callback(data)
-{
-  latlng = data; // store the array of data in a global for later use
-  fitBounds(latlng); // then invoke fitBounds to zoom and display markers within view
-  setInfoWindowListener(latlng);
-}
+function callback(data) {
 
+	  latlng = data; // store the array of data in a global for later use
+	  fitBounds(latlng); // then invoke fitBounds to zoom and display markers
+	  setInfoWindowListener(latlng);
+	  populateTable();
+	}
 /**
  * creates and positions markers
  * sets zoom so that all markers visible
@@ -123,7 +123,7 @@ function start() {
     alert("Reset to Start");
     return;
   }
-  $('#usertable').empty();
+  $('#markertable').empty();
   listenerHandler = google.maps.event.addListener(map, 'click', function(e) {
     pos[posIndex] = e.latLng;
     if (posIndex > 0) {
@@ -160,7 +160,7 @@ function filter() {
     const point = new google.maps.LatLng(latlng[i][1], latlng[i][2]);
     if (google.maps.geometry.poly.containsLocation(point, polygon)) {
       markers[i].setVisible(true);
-      // populateTableRow(latlng[i]);
+      populateTableRow(latlng[i]);
     } else {
       markers[i].setVisible(false);
     }
@@ -220,6 +220,28 @@ function drawPolygon() {
 
   polygon.setMap(map);
   google.maps.event.clearListeners(map, 'click');
+}
+
+/*******************************populating table with marker data*************************/
+/**
+ * Populates table with complete marker list + it's gps coords
+ */
+function populateTable()
+{
+  $.each(latlng, function(i, val) {
+    populateTableRow(val);
+  });
+}
+
+/**
+ * renders table row comprising marker and its gps coordinates
+ * @param data the array comprising description + gps (lat, lng)
+ */
+function populateTableRow(data)
+{
+  const description = "<td>" + data[0] + "</td>";
+  const gps   = "<td>" + data[1] + " " + data[2] + "</td>";
+  $('#markertable').append("<tr>" + description + gps + "</tr>");
 }
 
 google.maps.event.addDomListener(window, 'load', initialize);

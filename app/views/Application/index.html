@@ -2,14 +2,38 @@
 #{set title:'Polygon overlay' /}
 
 <section class="ui segment">
-  <h4>Marker locations</h4>
-  <button type="button" onclick="start()">Start</button>
-  <button type="button" onclick="stop()">Stop</button>
-  <button type="button" onclick="filter()">Filter</button>
-  <button type="button" onclick="reset()">Reset</button>
-  </section>
-<section class="ui segment">
-  <div id="googleMap" style="width:90%;height:400px;"></div>
+  <div class="ui grid">
+    <div class="eight wide column">
+      <section class="ui segment">
+        <h4>Marker locations</h4>
+        <div id="googleMap" style="width:100%;height:400px;"></div>     
+        <button type="button" onclick="start()">Start</button>
+        <button type="button" onclick="stop()">Stop</button>
+        <button type="button" onclick="filter()">Filter</button>
+        <button type="button" onclick="reset()">Reset</button>
+      </section>
+    </div>
+    <div class="eight wide column">
+      <section class="ui segment">
+      <h4>Markers within search area</h4><br>
+        <div style="overflow-y:scroll; max-height:405px">
+          <table class="ui inverted blue table segment">
+            <thead>
+              <tr>
+                <th>Description</th>
+                <th>GPS(latitude, longitude)</th>
+              </tr>
+            </thead>
+            <tbody id="markertable">           
+              <tr>
+              </tr>          
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+  </div>
 </section>
+
 <script src="http://maps.googleapis.com/maps/api/js"></script>
 <script src="@{'public/javascripts/polygon.js'}"></script>
